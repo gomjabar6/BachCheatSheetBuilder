@@ -1,10 +1,14 @@
-$("<div><button id='cheatSheetBtn'>Create Cheat Sheet</button></div>").insertBefore(".content")
-
+$("<div><button id='cheatSheetBtn' class='btn btn btn-primary'>Create Cheat Sheet</button></div>").insertBefore(".content")
 $( "#cheatSheetBtn" ).click(cheatSheetGenerator);
 
-var newDom = "<head></head><body><div style='width:8in; display:flex;flex-wrap:wrap;'>";
-
 function cheatSheetGenerator() {
+
+    var header = $(".ceremony-header");
+    var title = $("h2", header).text().trim();
+
+    var date = $(".episode-date").text().trim();
+
+    var newDom = "<head></head><body><div style='width:8in;'><div style='text-align:center'><h1>"+ title +" Cheat Sheet - "+ date +"</h1></div><div style='display:flex;flex-wrap:wrap;'>";
     var contestants = $(".contestant");
 
     contestants.each((index, c) => {
@@ -16,7 +20,7 @@ function cheatSheetGenerator() {
             <img style="object-fit:contain;width:100%;" src='` + headshot + `'>`
 
         if (selected){
-            newDom = newDom + `<div style="font-size:20;font-weight:bold;">` + name +`</div>`
+            newDom = newDom + `<div style="font-size:22;font-weight:bold;">` + name +`</div>`
         } else {
             newDom = newDom + `<div style="font-size:20;">`+ name +`</div>`
         }
@@ -27,7 +31,7 @@ function cheatSheetGenerator() {
         
     });
 
-    newDom = newDom + "</div></body>"
+    newDom = newDom + "</div></div></body>"
 
     window.open().document.write(newDom);
 
